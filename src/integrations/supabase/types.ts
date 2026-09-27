@@ -14,7 +14,226 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      billing_records: {
+        Row: {
+          amount_minor: number
+          created_at: string
+          currency: string
+          description: string
+          id: string
+          issued_at: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount_minor?: number
+          created_at?: string
+          currency?: string
+          description: string
+          id?: string
+          issued_at?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount_minor?: number
+          created_at?: string
+          currency?: string
+          description?: string
+          id?: string
+          issued_at?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      certificate_templates: {
+        Row: {
+          background_path: string | null
+          category: string
+          created_at: string
+          description: string | null
+          design: Json
+          id: string
+          name: string
+          orientation: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          background_path?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          design?: Json
+          id?: string
+          name: string
+          orientation?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          background_path?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          design?: Json
+          id?: string
+          name?: string
+          orientation?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      generation_jobs: {
+        Row: {
+          created_at: string
+          error_count: number
+          id: string
+          name: string
+          output_path: string | null
+          source_file_name: string | null
+          source_path: string | null
+          status: string
+          success_count: number
+          template_id: string | null
+          total_count: number
+          updated_at: string
+          user_id: string
+          validation_errors: Json
+        }
+        Insert: {
+          created_at?: string
+          error_count?: number
+          id?: string
+          name: string
+          output_path?: string | null
+          source_file_name?: string | null
+          source_path?: string | null
+          status?: string
+          success_count?: number
+          template_id?: string | null
+          total_count?: number
+          updated_at?: string
+          user_id: string
+          validation_errors?: Json
+        }
+        Update: {
+          created_at?: string
+          error_count?: number
+          id?: string
+          name?: string
+          output_path?: string | null
+          source_file_name?: string | null
+          source_path?: string | null
+          status?: string
+          success_count?: number
+          template_id?: string | null
+          total_count?: number
+          updated_at?: string
+          user_id?: string
+          validation_errors?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "generation_jobs_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "certificate_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          monthly_limit: number
+          plan: string
+          theme: string
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          monthly_limit?: number
+          plan?: string
+          theme?: string
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          monthly_limit?: number
+          plan?: string
+          theme?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      template_fields: {
+        Row: {
+          alignment: string
+          created_at: string
+          field_key: string
+          font_size: number
+          id: string
+          label: string
+          template_id: string
+          updated_at: string
+          user_id: string
+          x: number
+          y: number
+        }
+        Insert: {
+          alignment?: string
+          created_at?: string
+          field_key: string
+          font_size?: number
+          id?: string
+          label: string
+          template_id: string
+          updated_at?: string
+          user_id: string
+          x?: number
+          y?: number
+        }
+        Update: {
+          alignment?: string
+          created_at?: string
+          field_key?: string
+          font_size?: number
+          id?: string
+          label?: string
+          template_id?: string
+          updated_at?: string
+          user_id?: string
+          x?: number
+          y?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "template_fields_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "certificate_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
